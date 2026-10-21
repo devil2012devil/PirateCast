@@ -1,23 +1,35 @@
-import logging
-from homeassistant.core import HomeAssistant, CoreState, EVENT_HOMEASSISTANT_STARTED
-from .const import DOMAIN
-from .frontend import JSModuleRegistration
+"""PirateCast integration."""
 
-_LOGGER = logging.getLogger(__name__)
+from homeassistant.core import HomeAssistant
+from homeassistant.config_entries import ConfigEntry
+
+from .const import DOMAIN
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
-    async def _setup_frontend(_event=None) -> None:
-        await JSModuleRegistration(hass).async_register()
+"""Set up PirateCast."""
+hass.data.setdefault(DOMAIN, {})
+return True
 
-    if hass.state == CoreState.running:
-        await _setup_frontend()
-    else:
-        hass.bus.async_listen_once(EVENT_HOMEASSISTANT_STARTED, _setup_frontend)
-    return True
+async def async_setup_entry(
+hass: HomeAssistant,
+entry: ConfigEntry,
+) -> bool:
+"""Set up PirateCast from a config entry."""
+hass.data.setdefault(DOMAIN, {})
 
-async def async_setup_entry(hass: HomeAssistant, entry) -> bool:
-    await hass.config_entries.async_forward_entry_setups(entry, ["sensor"])
-    return True
+await hass.config_entries.async_forward_entry_setups(
+    entry,
+    ["sensor"],
+)
 
-async def async_unload_entry(hass: HomeAssistant, entry) -> bool:
-    return await hass.config_entries.async_unload_platforms(entry, ["sensor"])
+return True
+
+async def async_unload_entry(
+hass: HomeAssistant,
+entry: ConfigEntry,
+) -> bool:
+"""Unload PirateCast config entry."""
+return await hass.config_entries.async_unload_platforms(
+entry,
+["sensor"],
+)
