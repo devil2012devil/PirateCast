@@ -1,10 +1,9 @@
+"""Constants for PirateCast."""
+
 DOMAIN = "piratecast"
-URL_BASE = f"/{DOMAIN}"
-JSMODULES = [
-    {
-        "name": "PirateCast Card",
-        "filename": "piratecast-card.js",
-        "version": "1.0.0",
-    }
-]
-DEFAULT_WINDOWS_HOURS = [1, 3]
+
+DEFAULT_WINDOWS_HOURS = (1, 3)
+
+SCAN_INTERVAL_MINUTES = 5
+
+PRESSURE_UNIT_MMHG = "mmHg"
