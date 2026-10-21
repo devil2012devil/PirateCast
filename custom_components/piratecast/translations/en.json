@@ -1,1 +1,16 @@
-
+{
+"config": {
+"step": {
+"user": {
+"title": "PirateCast",
+"description": "Select the atmospheric pressure sensor whose history will be used to calculate pressure changes.",
+"data": {
+"source_entity": "Atmospheric pressure sensor"
+}
+}
+},
+"abort": {
+"already_configured": "This pressure sensor is already configured."
+}
+}
+}
