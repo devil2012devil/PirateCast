@@ -1,7 +1,7 @@
 {
   "domain": "piratecast",
   "name": "PirateCast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "codeowners": ["@devil2012devil"],
   "config_flow": true,
   "dependencies": ["frontend", "http", "sensor", "recorder"],
